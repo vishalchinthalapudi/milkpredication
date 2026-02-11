@@ -1,13 +1,14 @@
+import os
 from src.data_load import load_data
 from src.preprocessing import preprocess
-from src.model import train_model
-from src.visualization import plot_ph
+from src.train import train_model
 
-data = load_data("data/milknew.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(BASE_DIR, "data", "milknew.csv")
+
+data = load_data(data_path)
 data = preprocess(data)
 
-plot_ph(data)
+train_model(data)
 
-model = train_model(data)
-
-print("Training Completed")
+print("Model trained and saved successfully ✅")
